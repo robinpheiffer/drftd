@@ -136,15 +136,16 @@
     <h2>Interested?</h2>
     <p>Sign up for email notifications</p>
 
-    <form id="emailForm">
-      <input type="text" name="fullname" placeholder="Name & Surname" required>
-      <input type="email" name="email" placeholder="Email Address" required>
-      <label>
-        <input type="checkbox" required>
-        I agree to receive email marketing notifications.
-      </label>
-      <button type="submit">Notify Me</button>
-    </form>
+    <form id="emailForm" action="https://script.google.com/macros/s/AKfycbzqNUyYbt7yMAe5cqQ-Jqw7g3pIqCbQpBVQLRZrwFe4xixWjtcBv3oAzAzmP6qGVEku/exec" method="POST">
+  <input type="text" name="name" placeholder="Name & Surname" required>
+  <input type="email" name="email" placeholder="Email Address" required>
+  <label>
+    <input type="checkbox" required>
+    I agree to receive email marketing notifications.
+  </label>
+  <button type="submit">Notify Me</button>
+</form>
+
   </div>
 
   <script>
@@ -175,6 +176,27 @@
       alert("Thank you for signing up!");
       this.reset(); // Clear the form
     });
+document.getElementById('emailForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const data = new FormData(form);
+  const action = form.action;
+
+  fetch(action, {
+    method: 'POST',
+    body: data
+  })
+  .then(response => response.json())
+  .then(response => {
+    alert("Thank you for signing up!");
+    form.reset();
+  })
+  .catch(error => {
+    alert("Oops! Something went wrong.");
+    console.error(error);
+  });
+});
   </script>
 
 </body>
