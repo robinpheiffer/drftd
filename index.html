@@ -13,18 +13,25 @@
       margin: 0;
       padding: 0;
       font-family: 'Arial', sans-serif;
-      background-color: #1b1b1b;
+      background-color: #111;
       color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: start;
+      min-height: 100vh;
+      padding: 3rem 1rem;
       text-align: center;
     }
 
     .logo {
       width: 150px;
+      margin-bottom: 2rem;
+    }
+
+    .gif {
+      width: 120px;
+      height: 120px;
       margin-bottom: 2rem;
     }
 
@@ -39,19 +46,73 @@
       margin-bottom: 2rem;
     }
 
-    .gif {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 2rem;
+    .signup-container {
+      background-color: #222;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 15px rgba(255,255,255,0.05);
+    }
+
+    .signup-container h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .signup-container p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      color: #ccc;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      color: #aaa;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #fff;
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ddd;
     }
 
     @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
       }
+
       .countdown {
         font-size: 1.2rem;
       }
+
       .logo {
         width: 100px;
       }
@@ -61,22 +122,34 @@
 <body>
 
   <!-- Logo -->
-  <img class="logo" src="https://freeimage.host/i/FeogkJV" alt="Logo"> <!-- Replace 'your-logo.png' with your logo's path or URL -->
+  <img class="logo" src="https://iili.io/FeogkJV.png" alt="Logo"> <!-- Replace with your logo path -->
 
-  <!-- Animated gif -->
-  <img class="gif" src="https://media.giphy.com/media/xUPGcguWZHRC2HyBRS/giphy.gif" alt="Coming Soon Animation">
-
+ 
   <!-- Title -->
   <h1>COMING SOON</h1>
 
   <!-- Countdown -->
   <div class="countdown" id="countdown">Loading...</div>
 
+  <!-- Signup Form -->
+  <div class="signup-container">
+    <h2>Interested?</h2>
+    <p>Sign up for email notifications</p>
+
+    <form id="emailForm">
+      <input type="text" name="fullname" placeholder="Name & Surname" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <label>
+        <input type="checkbox" required>
+        I agree to receive email marketing notifications.
+      </label>
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
+
   <script>
     const countdown = document.getElementById('countdown');
-
-    // Set your launch date here (YYYY-MM-DD HH:MM:SS format)
-    const launchDate = new Date('2025-08-01T00:00:00').getTime();
+    const launchDate = new Date('2025-09-01T00:00:00').getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -95,6 +168,13 @@
 
       countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }, 1000);
+
+    // Optional: Handle form submission
+    document.getElementById('emailForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Thank you for signing up!");
+      this.reset(); // Clear the form
+    });
   </script>
 
 </body>
